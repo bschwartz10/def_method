@@ -1,3 +1,5 @@
+require 'date'
+
 class OutgoingPlayers
   attr_reader :all
 
@@ -5,11 +7,16 @@ class OutgoingPlayers
     @all = players.flatten
   end
 
+  def output_1
+    all.sort_by {|player| [player.gender, player.last_name]}
+  end
+
+  def output_2
+    all.sort_by {|player| [Date.strptime(player.date_of_birth, '%m/%d/%Y'), player.last_name]}
+  end
+
   def output_3
-    players = all.sort_by do |player|
-      player.last_name
-    end
-    players.reverse
+    all.sort_by {|player| player.last_name }.reverse!
   end
 
 end
