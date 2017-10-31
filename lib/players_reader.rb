@@ -1,5 +1,7 @@
 class PlayersReader
-  def self.read_players(players_txt)
-    IncomingPlayers.new(IO.readlines(players_txt) { |raw_player| raw_player })
+  def self.read_players(file)
+    incoming_players = []
+    IO.foreach(file) { |raw_player| incoming_players << raw_player.strip }
+    IncomingPlayers.new(incoming_players)
   end
 end
