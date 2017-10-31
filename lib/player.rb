@@ -1,14 +1,11 @@
 class Player
-  attr_reader :player, :attributes, :last_name, :first_name, :gender, :favorite_color, :date_of_birth
+  attr_reader :player, :attributes, :gender, :date_of_birth
 
   def initialize(player)
     @player = player
+    @date_of_birth = formatted_date_of_birth
+    @gender = formatted_gender
     @attributes = set_attributes
-    # @last_name = player[0]
-    # @first_name = player[1]
-    # @gender = formatted_gender
-    # @favorite_color = player[3]
-    # @date_of_birth = formatted_date_of_birth
   end
 
   def stock_attributes
@@ -16,8 +13,8 @@ class Player
       :last_name,
       :first_name,
       :gender,
-      :favorite_color,
       :date_of_birth,
+      :favorite_color,
     ]
   end
 
@@ -26,11 +23,11 @@ class Player
   end
 
   def formatted_date_of_birth
-    attributes[:date_of_birth].tr!('-', '/')
+    player[3].tr!('-', '/')
   end
 
   def formatted_gender
-    attributes[:gender].start_with?('M') ? 'Male' : 'Female'
+    player[2] = player[2].start_with?('M') ? 'Male' : 'Female'
   end
 
 end
