@@ -3,9 +3,12 @@ class Player
 
   def initialize(player)
     @player = player
-    @date_of_birth = formatted_date_of_birth
-    @gender = formatted_gender
     @attributes = set_attributes
+  end
+
+  def standardize!
+    formatted_date_of_birth
+    formatted_gender
   end
 
   def stock_attributes
@@ -23,11 +26,11 @@ class Player
   end
 
   def formatted_date_of_birth
-    player[3].tr!('-', '/')
+    attributes[:date_of_birth].tr!('-', '/')
   end
 
   def formatted_gender
-    player[2] = player[2].start_with?('M') ? 'Male' : 'Female'
+    attributes[:gender] = attributes[:gender].start_with?('M') ? 'Male' : 'Female'
   end
 
 end
